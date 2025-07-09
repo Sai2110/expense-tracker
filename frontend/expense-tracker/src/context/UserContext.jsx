@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import axiosInstance from "../utils/axiosInstance";
+import { API_PATHS } from "../utils/apiPaths";
 
 export const UserContext = createContext();
 
@@ -16,6 +18,31 @@ const UserProvider = ({ children }) => {
         setUser(null);
     };
 
+
+//from GPT
+      // 🔁 Fetch user on first load (if token exists)
+  //   useEffect(() => {
+  //   const fetchUser = async () => {
+  //     const token = localStorage.getItem("token");
+  //     if (!token) return;
+
+  //     try {
+  //       const response = await axiosInstance.get(API_PATHS.AUTH.GET_USER_INFO);
+  //       if (response.data) {
+  //         setUser(response.data);
+  //       }
+  //     } catch (err) {
+  //       console.error("Error fetching user info:", err);
+  //       setUser(null); // optional: clear user on error
+  //     }
+  //   };
+
+  //   fetchUser();
+  // }, []);
+//From GPT^
+
+
+
     return (
         <UserContext.Provider
             value={{
@@ -30,3 +57,44 @@ const UserProvider = ({ children }) => {
 }
 
 export default UserProvider;
+
+//----------------------------------------------------------------------------------------------------
+
+// context/UserContext.js
+// import React, { createContext, useState, useEffect } from "react";
+
+// export const UserContext = createContext();
+
+// const UserProvider = ({ children }) => {
+//   const [user, setUser] = useState(null);
+
+//   // Load user from localStorage when app loads
+//   useEffect(() => {
+//     const storedUser = localStorage.getItem("user");
+//     if (storedUser) {
+//       setUser(JSON.parse(storedUser));
+//     }
+//   }, []);
+
+//   const updateUser = (userData) => {
+//     setUser(userData);
+//     localStorage.setItem("user", JSON.stringify(userData));
+//   };
+
+//   const clearUser = () => {
+//     setUser(null);
+//     localStorage.removeItem("user");
+//     localStorage.removeItem("token");
+//   };
+
+//   return (
+//     <UserContext.Provider value={{ user, updateUser, clearUser }}>
+//       {children}
+//     </UserContext.Provider>
+//   );
+// };
+
+// export default UserProvider;
+
+//----------------------------------------------------------------------------------------------------
+

@@ -46,7 +46,7 @@ exports.registerUser = async (req , res ) => {
 exports.loginUser = async (req , res ) => {
     const {email, password} = req.body;
     if(!email || !password){
-        return res.statur(400).json({message: "All the fields are reuired"});
+        return res.status(400).json({message: "All the fields are reuired"});
     }
     try{
         const user =await User.findOne({email});

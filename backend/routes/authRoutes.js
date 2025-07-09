@@ -23,6 +23,5 @@ router.post("/upload-image" , upload.single("image"), (req, res)=>{
     }`;
     res.status(200).json({ imageUrl });
 });
-//till here
 
 module.exports = router;
